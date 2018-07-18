@@ -27,5 +27,5 @@ def add_space(str_):
 
 
 if __name__ == '__main__':
-    TEXT_HELLO = '我是CHina人'
+    TEXT_HELLO = "I'm Chinese"
     print(add_space(TEXT_HELLO))
