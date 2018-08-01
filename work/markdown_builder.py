@@ -3,7 +3,6 @@ from work import file_name
 
 
 def builder(index, data_file_name):
-
     print('\n第 3 部分：开始生成 markDown ')
     markdown_file_name = file_name.get_markdown_name(index)
     with open(data_file_name, 'r', encoding='utf-8') as file:
@@ -37,7 +36,7 @@ def builder(index, data_file_name):
         # 文章来源说明
         file.write('---\n\n文章主要来源:\n')
         for i, domain in enumerate(list_domain):
-            file.write(f"{i+1}. [{domain['title']}]({domain['link']})  \n")
+            file.write(f"{i + 1}. [{domain['title']}]({domain['link']})  \n")
         file.write('\n---\n\n')
 
         # 关于我

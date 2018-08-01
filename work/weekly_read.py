@@ -214,10 +214,10 @@ def download_data():
     list_domain = []
 
     print('1. 爬取 Android Weekly 中的数据..')
-    # aw_title, aw_link = getAwArchive()
-    # if aw_link:
-    #     list_article.extend(get_aw_data(aw_link))
-    #     list_domain.append({'title': aw_title, 'link': aw_link})
+    aw_title, aw_link = getAwArchive()
+    if aw_link:
+        list_article.extend(get_aw_data(aw_link))
+        list_domain.append({'title': aw_title, 'link': aw_link})
 
     print('2. 爬取 Kotlin Weekly 中的数据..')
     kw_title, kw_archive, index = get_kw_archive()
@@ -226,10 +226,10 @@ def download_data():
         list_domain.append({'title': kw_title, 'link': kw_archive})
 
     print('3. 爬取 medium Kotlin Weekly 中的数据..')
-    # mkw_title, mkw_archive = get_kw_medium_act()
-    # if mkw_archive:
-    #     list_article.extend(get_kw_medium_data(mkw_archive))
-    #     list_domain.append({'title': mkw_title, 'link': mkw_archive})
+    mkw_title, mkw_archive = get_kw_medium_act()
+    if mkw_archive:
+        list_article.extend(get_kw_medium_data(mkw_archive))
+        list_domain.append({'title': mkw_title, 'link': mkw_archive})
 
     dict_data['data'] = list_article
     dict_data['domain'] = list_domain
