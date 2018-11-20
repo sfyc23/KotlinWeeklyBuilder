@@ -1,15 +1,14 @@
-# -*- coding: UTF-8 -*-
 '''
 腾讯 AI 文本（机器）翻译
 地址：https://ai.qq.com/product/nlptrans.shtml#text
 '''
 import hashlib
+import urllib
 from urllib import parse
 import time
 import random
 import requests
 from common import add_spaces
-
 
 # https://ai.qq.com/doc/nlptrans.shtml 文档说明
 API_INFO = {
@@ -30,12 +29,15 @@ def get_sign_string(parser):
     :param parser:
     :return:
     '''
+    # print(type(parser))
     params = sorted(parser.items())
-    uri_str = parse.urlencode(params)
+    # print(type(params))
+    uri_str = parse.urlencode(params,encoding="UTF-8")
+    # print(uri_str)
 
     sign_str = f'{uri_str}&app_key={API_INFO["APP_KEY"]}'
 
-    # print('sign =', sign_str.strip())
+    print('sign =', sign_str.strip())
     hash_md5 = hashlib.md5(sign_str.encode('utf-8'))
     return hash_md5.hexdigest().upper()
 
@@ -62,6 +64,8 @@ def get_request_params(org_text):
         'app_id': int(API_INFO['APP_ID']),
         'text': org_text,
         'time_stamp': int(time.time()),
+        # 'source':'en',
+        # 'target': 'zh',
         'nonce_str': get_nonce_str(),
         'type': 0
     }
@@ -85,22 +89,32 @@ def translation(org_text):
         trans_text = req_json['data']['trans_text']
         trans_text = add_spaces.add_space(trans_text)
 
-        trans_text = trans_text.replace('“','『').replace('”','』')
+        trans_text = trans_text.replace('“', '『').replace('”', '』')
 
         return trans_text
     return None
+import urllib
 
 if __name__ == '__main__':
     # TEXT_HELLO =  '\'.let\', \'.apply\', \'.also\', \'.run\', and \'with\''
     # TEXT_HELLO = ' are known as scope functions in Kotlin. We examine them and discuss what…'
     # TEXT_HELLO = 'you and "me"'
-    TEXT_HELLO = 'you and me'
+    # TEXT_HELLO = 'you and me'
+    TEXT_HELLO = "What's New In Kotlin 1.3? * Todd Ginsberg"
     # TEXT_HELLO = parse.quote_plus(TEXT_HELLO)
     # print(parse.quote(TEXT_HELLO))
 
-
     print(translation(TEXT_HELLO))
+
+    # urllib.quote(s)
+
+    # urllib.quote_plus(TEXT_HELLO)
+    print(urllib.parse.quote(TEXT_HELLO))
+    # print(time.time())
 
     # you = 'Kotlin 神秘化：什么是“范围函数”，为什么它们是特殊的？'
     # you = you.replace('“', '『').replace('”','』')
     # print(you)
+
+    # print(hashlib.md5("ILOVEyou1314".encode("UTF-8")).hexdigest())
+    # print(time.time())

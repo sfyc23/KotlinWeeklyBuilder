@@ -1,7 +1,7 @@
 from work import weekly_read
 from work import data_process
 from work import markdown_builder
-from work import file_name
+# from work import file_name
 import time
 
 if __name__ == '__main__':

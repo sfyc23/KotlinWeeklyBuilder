@@ -4,6 +4,7 @@ from work import file_name
 
 def builder(index, data_file_name):
     print('\n第 3 部分：开始生成 markDown ')
+
     markdown_file_name = file_name.get_markdown_name(index)
     with open(data_file_name, 'r', encoding='utf-8') as file:
         dict_data = json.loads(file.read())

@@ -4,8 +4,6 @@ from pandas import Series, DataFrame
 from common import translation_utils
 
 
-
-
 def clear_data(data_file_name):
     print('\n第 2 部分：开始数据处理：')
     with open(data_file_name, 'r', encoding='utf-8') as file:
@@ -57,12 +55,10 @@ def clear_data(data_file_name):
     print('数据整理排序...')
     list_article = sorted(list_article, key=sort_list)
 
-
     dict_data['data'] = list_article
 
     with open(data_file_name, 'w+', encoding='utf-8') as file:
         file.write(json.dumps(dict_data, ensure_ascii=False) + '\n')
-        file.close()
 
     print('数据处理完成...')
 # type(list_article[0])
